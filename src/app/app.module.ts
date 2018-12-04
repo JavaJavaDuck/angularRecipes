@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { RecipesListComponent } from './Recipes/recipes-list/recipes-list.component';
 import { RecipesItemComponent } from './Recipes/recipes-list/recipes-item/recipes-item.component';
+import { LikeComponent } from './like/like.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { RecipesItemComponent } from './Recipes/recipes-list/recipes-item/recipe
     HeaderComponent,
     ShoppingListComponent,
     RecipesListComponent,
-    RecipesItemComponent
+    RecipesItemComponent,
+    LikeComponent
   ],
   imports: [
     BrowserModule,

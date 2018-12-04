@@ -23,7 +23,8 @@ ricetta: Recipe = new Recipe(
     new Recipe(
       'Carbonara',
       'Lorem Ipsum',
-      'https://www.gustissimo.it/articoli/ricette/pasta-salumi/spaghetti-alla-carbonara.jpg'
+      'https://www.gustissimo.it/articoli/ricette/pasta-salumi/spaghetti-alla-carbonara.jpg',
+      true
     ),
 
     new Recipe(
