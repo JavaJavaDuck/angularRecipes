@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Recipe } from './recipes.models';
 
 @Component({
@@ -7,6 +7,7 @@ import { Recipe } from './recipes.models';
   styleUrls: ['./recipes-list.component.scss']
 })
 export class RecipesListComponent implements OnInit {
+
 ricetta: Recipe = new Recipe(
     'Lasagne',
     'Lorem Ipsum',
@@ -33,6 +34,14 @@ ricetta: Recipe = new Recipe(
       'http://www.strettoweb.com/wp-content/uploads/2016/08/31-8-Amatriciana-in-Piazza-Portosalvo-800x600.jpg'
     )
   ];
+
+  @Output() selectedRecipe = new EventEmitter<Recipe>();
+
+  onSelectedList(recipe) {
+    console.log('elemento lista selezionato', recipe);
+    this.selectedRecipe.emit(recipe);
+  }
+
 
   constructor() { }
 

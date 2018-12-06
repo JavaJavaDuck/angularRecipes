@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Recipe } from './Recipes/recipes-list/recipes.models';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angularRecipes';
+
+selectedRecipe: Recipe = null;
+
+onSelectedRecipe(recipe) {
+  console.log('ricetta ricevuta', recipe);
+  this.selectedRecipe = recipe;
+  }
 }

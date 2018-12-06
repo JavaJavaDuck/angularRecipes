@@ -9,13 +9,18 @@ export class LikeComponent implements OnInit {
 
   @Input()isLiked = false;
 
-  clickedLike() {
+  clickedLike(ev: MouseEvent, numero) {
+    console.warn('cliccato');
     this.isLiked = !this.isLiked;
+
+    console.log('dopo click');
+    ev.preventDefault();
   }
 
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }
