@@ -17,7 +17,7 @@ export class RecipesItemComponent implements OnInit {
     console.log('ricetta selezionata', this.currentRicetta);
     // this.selectedRecipe.emit(this.currentRicetta);
 
-  this.serv.changeSelectedRecipe(this.currentRicetta);
+    this.serv.changeSelectedRecipe(this.currentRicetta);
   }
 
   constructor(private serv: RecipesService) { }

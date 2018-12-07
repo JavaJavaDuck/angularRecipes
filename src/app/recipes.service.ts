@@ -14,11 +14,14 @@ export class RecipesService {
 
   newRecipes = new EventEmitter<Recipe[]>();
 
+  recipeChanged = new EventEmitter<Recipe>();
+
   public selectedRecipe: Recipe = null;
 
   public changeSelectedRecipe(ricetta: Recipe) {
     console.log('changeSelectedRecipe', ricetta);
     this.selectedRecipe = ricetta;
+    this.recipeChanged.emit(this.selectedRecipe);
   }
 
   constructor(private http: HttpClient) { }
@@ -30,17 +33,23 @@ export class RecipesService {
     const response = this.http.get(URL_Composta).toPromise()
       .then((resp: {meals: []}) => {
         console.log('ricette ricevute', resp);
-        this.recipes = resp.meals.map(function(meal: any) {
-          console.log(meal);
-          const myRecipe = new Recipe(meal.strMeal, meal.strInstructions, meal.strMealThumb);
-          return myRecipe;
-        });
+
+        if (resp.meals) {
+          this.recipes = resp.meals.map(function(meal: any) {
+            console.log(meal);
+            const myRecipe = new Recipe(meal.strMeal, meal.strInstructions, meal.strMealThumb);
+            return myRecipe;
+          });
+        } else {
+          this.recipes = [];
+        }
+
         console.log('recipes ripulite', this.recipes);
 
         this.newRecipes.emit(this.recipes);
       })
       .catch(err => {
-        console.log('ERRORE!!!', err);
+        console.error('ERRORE!!!', err);
       });
 
     }

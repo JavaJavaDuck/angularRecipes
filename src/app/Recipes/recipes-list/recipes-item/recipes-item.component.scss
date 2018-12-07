@@ -1,0 +1,14 @@
+.item-recipe {
+  margin-bottom: 10px;
+  padding: 5px;
+  background-color: rgb(193, 253, 181);
+  border: solid 2px rgb(0, 255, 106);
+  cursor: pointer;
+  &:hover {
+    background-color: aquamarine;
+  }
+
+
+}
+
+
