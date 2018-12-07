@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +12,8 @@ import { RecipesListComponent } from './Recipes/recipes-list/recipes-list.compon
 import { RecipesItemComponent } from './Recipes/recipes-list/recipes-item/recipes-item.component';
 import { LikeComponent } from './like/like.component';
 import { RecipeDetailComponent } from './Recipes/recipe-detail/recipe-detail.component';
+import { RecipesService } from './recipes.service';
+
 
 @NgModule({
   declarations: [
@@ -18,13 +23,15 @@ import { RecipeDetailComponent } from './Recipes/recipe-detail/recipe-detail.com
     RecipesListComponent,
     RecipesItemComponent,
     LikeComponent,
-    RecipeDetailComponent
+    RecipeDetailComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [RecipesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

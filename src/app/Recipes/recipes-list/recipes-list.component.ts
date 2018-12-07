@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Recipe } from './recipes.models';
+import { RecipesService } from 'src/app/recipes.service';
 
 @Component({
   selector: 'app-recipes-list',
@@ -8,32 +9,7 @@ import { Recipe } from './recipes.models';
 })
 export class RecipesListComponent implements OnInit {
 
-ricetta: Recipe = new Recipe(
-    'Lasagne',
-    'Lorem Ipsum',
-    'https://cc-media-foxit.fichub.com/image/fox-it-life/1fc0fb34-c6b2-43b1-b9c4-abe0744b8cfa/lasagna-classica-maxw-654.jpg'
-  );
-
-  recipes: Recipe[] = [
-    new Recipe(
-      'Lasagne',
-      'Lorem Ipsum',
-      'https://cc-media-foxit.fichub.com/image/fox-it-life/1fc0fb34-c6b2-43b1-b9c4-abe0744b8cfa/lasagna-classica-maxw-654.jpg'
-    ),
-
-    new Recipe(
-      'Carbonara',
-      'Lorem Ipsum',
-      'https://www.gustissimo.it/articoli/ricette/pasta-salumi/spaghetti-alla-carbonara.jpg',
-      true
-    ),
-
-    new Recipe(
-      'Amatriciana',
-      'Lorem Ipsum',
-      'http://www.strettoweb.com/wp-content/uploads/2016/08/31-8-Amatriciana-in-Piazza-Portosalvo-800x600.jpg'
-    )
-  ];
+  public recipes: Recipe[] = [];
 
   @Output() selectedRecipe = new EventEmitter<Recipe>();
 
@@ -43,7 +19,19 @@ ricetta: Recipe = new Recipe(
   }
 
 
-  constructor() { }
+  constructor(recipeService: RecipesService) {
+    recipeService.newRecipes.subscribe(
+
+      (ricetteAggiornate) => {
+        console.log('ricette aggiornate', ricetteAggiornate);
+        this.recipes = ricetteAggiornate;
+      },
+
+      function(error) {
+        console.error(error);
+      }
+    );
+   }
 
   ngOnInit() {
   }
